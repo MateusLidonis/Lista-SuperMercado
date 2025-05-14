@@ -46,10 +46,14 @@ document.querySelector('.lista-produtos')
     if (e.target && e.target.getAttribute('name') === 'excluir-produto') {
 
         const produtoDiv = e.target.closest('.lista-produto-single');
-        const nomeProduto = produtoDiv.querySelector('h3').innerText;
+        const nomeProduto = produtoDiv.querySelector('h3').innerText.trim();
 
-        items = items.filter(item => item.nome !== nomeProduto);
-
+        // encontrar o índice real baseado no nome
+        const index = items.findIndex(item => item.nome === nomeProduto);
+        if (index !== -1) {
+            items.splice(index, 1); // remove 1 item no índice encontrado
+        }
+        
         let listaProdutos = document.querySelector('.lista-produtos');
         let soma = 0;
         listaProdutos.innerHTML = '';
