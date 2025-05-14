@@ -49,7 +49,8 @@ document.querySelector('.lista-produtos')
         const nomeProduto = produtoDiv.querySelector('h3').innerText.trim();
 
         // encontrar o índice real baseado no nome
-        const index = items.findIndex(item => item.nome === nomeProduto);
+        const index = Array.from(document.querySelectorAll('.lista-produto-single')).indexOf(produtoDiv);
+
         if (index !== -1) {
             items.splice(index, 1); // remove 1 item no índice encontrado
         }
